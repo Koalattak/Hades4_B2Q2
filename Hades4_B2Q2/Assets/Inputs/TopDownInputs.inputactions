@@ -1,6 +1,115 @@
 {
-    "version": 0,
+    "version": 1,
     "name": "TopDownInputs",
-    "maps": [],
+    "maps": [
+        {
+            "name": "TopDown",
+            "id": "8feae84a-1f26-4c90-9853-4748af291ea3",
+            "actions": [
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "7a73e280-ecd1-4322-8260-bddad422b321",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "7036ecbd-b77c-463f-8570-5a42dcbe373b",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Evade",
+                    "type": "Button",
+                    "id": "2612c685-6b30-452a-b192-f83481e804d8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RangedAttack",
+                    "type": "Button",
+                    "id": "4d63b4e5-d520-41c6-81cf-da95a1d7a064",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Menu",
+                    "type": "Button",
+                    "id": "dea94efe-46de-4294-a074-ea56525e35f8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "58c2a438-8461-433a-b5f8-d7470a689923",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6aa474b9-b744-4302-951d-a58072d37dc1",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6e375bd4-9784-4608-af3c-974f47a9cf57",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Evade",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "64a27949-c424-499c-a397-7a3684f37f5d",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RangedAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "efa85494-960e-407b-b893-67e2e46ed2ec",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
     "controlSchemes": []
 }
