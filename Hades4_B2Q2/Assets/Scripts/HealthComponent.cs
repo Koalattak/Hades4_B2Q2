@@ -9,23 +9,25 @@ namespace MaquestiauxMark.Hades
         [SerializeField] private int _healthMax;
 
         public event Action OnDamaged;
+        public event Action OnChanged;
         public event Action OnDeath;
 
         private bool _isDead;
-        private bool _isInvincible;
+        public bool IsInvincible { get; private set; }
 
 
         private void Start()
         {
             _healthCurrent = _healthMax;
+            OnChanged?.Invoke();
             _isDead = false;
-            _isInvincible = false;
+            IsInvincible = false;
         }
 
         //Take Damage Function
         public void TakeDamage(int damage)
         {
-            if (_isDead || _isInvincible) return;
+            if (_isDead || IsInvincible) return;
             _healthCurrent -= damage;
             _healthCurrent = Mathf.Clamp(_healthCurrent, 0, _healthMax);
             if(_healthCurrent > 0)
@@ -50,8 +52,7 @@ namespace MaquestiauxMark.Hades
         //Invincibility Toggle
         public void ToggleInvincibility()
         {
-            _isInvincible = !_isInvincible;
-            Debug.Log(_isInvincible);
+            IsInvincible = !IsInvincible;
         }
     }
 }

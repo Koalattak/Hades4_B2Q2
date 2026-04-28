@@ -1,13 +1,16 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 namespace MaquestiauxMark.Hades
 {
     public class HurtBox : MonoBehaviour
     {
         public event Action OnSuccessfulHit;
+        public event Action OnAttackEnd;
         [SerializeField] private Collider _hurtBox;
         private int _damageToDeal;
+        private List<HealthComponent> _enemiesHit = new();
 
 
         void Awake()
@@ -18,6 +21,8 @@ namespace MaquestiauxMark.Hades
         private void OnTriggerEnter(Collider other)
         {
             if (!other.transform.root.TryGetComponent<HealthComponent>(out HealthComponent health)) return;
+            if(health.IsInvincible || _enemiesHit.Contains(health)) return;
+            _enemiesHit.Add(health);
             health.TakeDamage(_damageToDeal);
             OnSuccessfulHit?.Invoke();
         }
@@ -31,6 +36,8 @@ namespace MaquestiauxMark.Hades
         public void DeactivateHurtBox()
         {
             _hurtBox.enabled = false;
+            _enemiesHit.Clear();
+            OnAttackEnd?.Invoke();
         }
     }
 }
