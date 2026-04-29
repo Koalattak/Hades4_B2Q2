@@ -21,7 +21,7 @@ namespace MaquestiauxMark.Hades
         private void OnTriggerEnter(Collider other)
         {
             if (!other.transform.root.TryGetComponent<HealthComponent>(out HealthComponent health)) return;
-            if(health.IsInvincible || _enemiesHit.Contains(health)) return;
+            if(health.IsInvincible || health.GodMode || _enemiesHit.Contains(health)) return;
             _enemiesHit.Add(health);
             health.TakeDamage(_damageToDeal);
             OnSuccessfulHit?.Invoke();

@@ -10,8 +10,7 @@ namespace MaquestiauxMark.Hades
         Idle,
         Follow,
         RangedAttack,
-        Attack,
-        Dead
+        Attack
     }
 
     public class EnemyController : MonoBehaviour
@@ -19,6 +18,7 @@ namespace MaquestiauxMark.Hades
         private bool _stopAllActions;
         private bool _canRangeAttack;
         private bool _isAttacking;
+        private bool _instantDeath = false;
         private HealthComponent _playerHealth;
 
         [SerializeField] private float _deathDelay;
@@ -51,30 +51,44 @@ namespace MaquestiauxMark.Hades
         [SerializeField] private NavMeshAgent _navMeshAgent;
         [SerializeField] private Animator _animator;
         [SerializeField] private HealthComponent _health;
-        [SerializeField] private PlayerController _playerRef;
+        private PlayerController _playerRef;
 
         public HealthComponent GetHealth() { return _health; }
 
-        private void Start()
+        public void InitialiseEnemy(PlayerController playerRef)
         {
-            _health.OnDamaged += EnemyDamage;
-            _health.OnDeath += EnemyDeath;
-            _currentState = _initialState;
-            _stopAllActions = false;
-            _hitBox.enabled = true;
-            _canRangeAttack = true;
-
+            _playerRef = playerRef;
             _playerHealth = _playerRef.GetHealth();
             _playerHealth.OnDeath += OnPlayerDeath;
+            ResetEnemy();
+        }
+
+        private void ResetEnemy()
+        {
+            _health.OnDamaged -= EnemyDamage;
+            _health.OnDeath -= EnemyDeath;
+
+            _currentState = _initialState;
+            _health.SetHealthToMax();
+            _health.OnDamaged += EnemyDamage;
+            _health.OnDeath += EnemyDeath;
+            _instantDeath = false;
+            _hitBox.enabled = true;
+            _canRangeAttack = true;
+            _stopAllActions = false;
         }
 
         private void OnPlayerDeath()
         {
+            if(!gameObject) return;
             _stopAllActions = true;
             OnStateExit();
             _animator.SetBool(_movementAnimatorName, false);
             _currentState = _initialState;
-            _navMeshAgent.isStopped = true;
+            if (_navMeshAgent && gameObject)
+            {
+                _navMeshAgent.isStopped = true;
+            }
         }
 
         private void EnemyDamage()
@@ -83,14 +97,20 @@ namespace MaquestiauxMark.Hades
             //Play Hurt Sound
             Debug.Log("ouch");
 
-            if(_currentState == _initialState)
+            if (_currentState == _initialState)
             {
                 OnStateChange(EEnemyState.Follow);
             }
         }
-
-        private void EnemyDeath()
+        public void EnemyInstantDeath()
         {
+            _instantDeath = true;
+            EnemyDeath();
+        }
+
+        public void EnemyDeath()
+        {
+            if (!gameObject) return;
             _health.OnDamaged -= EnemyDamage;
             _health.OnDeath -= EnemyDeath;
             _playerHealth.OnDeath -= OnPlayerDeath;
@@ -98,7 +118,14 @@ namespace MaquestiauxMark.Hades
             _stopAllActions = true;
             _hitBox.enabled = false;
             _animator.SetBool(_deathAnimatorName, true);
-            StartCoroutine(DeathDelay()); //Destroy After a Delay
+            if(_instantDeath)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                StartCoroutine(DeathDelay()); //Destroy After a Delay
+            }
         }
 
         private IEnumerator DeathDelay()

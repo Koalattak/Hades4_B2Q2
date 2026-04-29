@@ -5,40 +5,54 @@ namespace MaquestiauxMark.Hades
 {
     public class ArenaManager : MonoBehaviour
     {
-        [SerializeField] private List<EnemyController> _enemiesToKill;
+        [SerializeField] private EnemyController _enemyToSpawn;
+        [SerializeField] private PlayerController _playerRef;
+        private List<EnemyController> _enemiesToKill = new();
         private int _enemyCounter;
         [SerializeField] private List<Transform> _pathsToBlock;
+        [SerializeField] private List<Transform> _enemyTransforms;
         [SerializeField] private GameObject _wallToSpawn;
         [SerializeField] private List<GameObject> _spawnedWalls;
-        private bool _isBlocking;
+        [SerializeField] private CameraController _camera;
+        [SerializeField] private Transform _cameraTransform;
+        [SerializeField] private Transform _chechpointTransform;
+        private bool _isBlocking = false;
+        private bool _isCompleted = false;
+
 
         private void OnTriggerEnter(Collider other)
         {
-            if (_isBlocking) return;
+            if (_isBlocking || _isCompleted) return;
             if (!other.transform.root.TryGetComponent<PlayerController>(out _)) return;
             _isBlocking = true;
-            
+            _playerRef.OnReset += DestroyWalls;
+            //Set Checkpoint
+            SpawnManager.SetCheckpoint(_chechpointTransform);
+
             //Spawn Walls
-            foreach(Transform wallTransform in _pathsToBlock)
+            foreach (Transform wallTransform in _pathsToBlock)
             {
                 GameObject spawnedWall = Instantiate(_wallToSpawn, wallTransform.position, Quaternion.identity);
                 _spawnedWalls.Add(spawnedWall);
             }
-            Debug.Log("Test");
+            _camera.MakeCameraStatic(_cameraTransform);
+            SpawnEnemies();
         }
 
-        void Start()
+        private void SpawnEnemies()
         {
-            foreach(EnemyController enemy in _enemiesToKill)
+            _enemyCounter = 0;
+            foreach (Transform enemyTransform in _enemyTransforms)
             {
-                if (enemy != null)
+                if (enemyTransform != null)
                 {
-                    enemy.GetHealth().OnDeath += RemoveEnemyFromList;
+                    EnemyController spawnedEnemy = Instantiate(_enemyToSpawn, enemyTransform.position, enemyTransform.rotation);
+                    spawnedEnemy.InitialiseEnemy(_playerRef);
+                    _enemiesToKill.Add(spawnedEnemy);
+                    spawnedEnemy.GetHealth().OnDeath += RemoveEnemyFromList;
+                    _enemyCounter++;
                 }
             }
-            _enemyCounter = _enemiesToKill.Count;
-            _isBlocking = false;
-
         }
 
         private void RemoveEnemyFromList()
@@ -46,15 +60,37 @@ namespace MaquestiauxMark.Hades
             _enemyCounter--;
             if (_enemyCounter > 0) return;
             DestroyWalls();
-
+            _isCompleted = true;
         }
 
         private void DestroyWalls()
         {
-            foreach(GameObject wall in _spawnedWalls)
+            foreach (GameObject wall in _spawnedWalls)
             {
                 Destroy(wall);
             }
+            foreach (EnemyController enemy in _enemiesToKill)
+            {
+                if (enemy != null && enemy.gameObject)
+                {
+                    enemy.GetHealth().OnDeath -= RemoveEnemyFromList;
+                    enemy.EnemyDeath();
+                }
+            }
+
+
+            _isBlocking = false;
+            _camera.FollowPlayer();
+            _playerRef.OnReset -= DestroyWalls;
+
         }
+
+        //private void Update()
+        //{
+        //    if (_isBlocking)
+        //    {
+        //        _camera.MakeCameraStatic(_cameraTransform);
+        //    }
+        //}
     }
 }

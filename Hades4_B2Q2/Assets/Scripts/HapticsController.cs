@@ -6,15 +6,15 @@ namespace MaquestiauxMark.Hades
 {
     public class HapticsController : MonoBehaviour
     {
-        public static HapticsController _instance;
+        public static HapticsController s_hapticsInstance;
 
         private Gamepad _controller;
 
         private void Awake()
         {
-            if (_instance == null)
+            if (s_hapticsInstance == null)
             {
-                _instance = this;
+                s_hapticsInstance = this;
             }
         }
 

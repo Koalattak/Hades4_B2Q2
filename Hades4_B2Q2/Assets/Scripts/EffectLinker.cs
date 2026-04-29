@@ -21,7 +21,7 @@ namespace MaquestiauxMark.Hades
 
         private void ApplyEffects()
         {
-            HapticsController._instance.HapticsPulse(_vibrationLowFrequency, _vibrationHighFrequency, _vibrationDuration);
+            HapticsController.s_hapticsInstance.HapticsPulse(_vibrationLowFrequency, _vibrationHighFrequency, _vibrationDuration);
             
             //_attackSoundSource.Play();
             //StartCoroutine(_cameraShake.ShakeCamera(0.1f, 0.1f));

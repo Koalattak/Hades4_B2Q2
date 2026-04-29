@@ -8,12 +8,14 @@ namespace MaquestiauxMark.Hades
         [SerializeField] private Slider _healthSlider;
         [SerializeField] private Image _backgroundImage;
         [SerializeField] private HealthComponent _health;
+        private Color _initialColor;
         [SerializeField] private Color _endColor = new(0f, 0f, 0f, 0f);
 
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
+            _initialColor = _backgroundImage.color;
             _health.OnDamaged += OnHealthChanged;
             _health.OnDeath += OnHealthChanged;
             _health.OnDeath += OnDeath;
@@ -22,15 +24,11 @@ namespace MaquestiauxMark.Hades
 
         private void OnHealthChanged()
         {
+            _backgroundImage.color = _initialColor;
             _healthSlider.value = _health.GetHealthPercent();
         }
         private void OnDeath()
         {
-            _health.OnDamaged -= OnHealthChanged;
-            _health.OnDeath -= OnHealthChanged;
-            _health.OnDeath -= OnDeath;
-            _health.OnChanged -= OnHealthChanged;
-
             _backgroundImage.color = _endColor;
         }
     }

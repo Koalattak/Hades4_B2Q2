@@ -14,20 +14,25 @@ namespace MaquestiauxMark.Hades
 
         private bool _isDead;
         public bool IsInvincible { get; private set; }
+        public bool GodMode { get; private set; }
 
-
-        private void Start()
+        public void SetHealthToMax()
         {
             _healthCurrent = _healthMax;
             OnChanged?.Invoke();
             _isDead = false;
+        }
+
+        private void Start()
+        {
+            SetHealthToMax();
             IsInvincible = false;
         }
 
         //Take Damage Function
         public void TakeDamage(int damage)
         {
-            if (_isDead || IsInvincible) return;
+            if (_isDead || IsInvincible || GodMode) return;
             _healthCurrent -= damage;
             _healthCurrent = Mathf.Clamp(_healthCurrent, 0, _healthMax);
             if(_healthCurrent > 0)
@@ -43,7 +48,6 @@ namespace MaquestiauxMark.Hades
             }
         }
 
-        //Get Health
         public float GetHealthPercent()
         {
             return (float)_healthCurrent / (float)_healthMax;
@@ -53,6 +57,11 @@ namespace MaquestiauxMark.Hades
         public void ToggleInvincibility()
         {
             IsInvincible = !IsInvincible;
+        }
+
+        public void ToggleGodMode()
+        {
+            GodMode = !GodMode;
         }
     }
 }

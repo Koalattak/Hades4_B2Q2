@@ -296,10 +296,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Hades::MaquestiauxMark.Hades.EnemyController
   _deathDelay: 5
   _baseAttackDamage: 3
-  _rangeAttackDamage: 5
+  _rangeAttackDamage: 10
   _rangeAttackCooldown: 5
   _initialState: 0
-  _baseAttackRecoil: 4
+  _baseAttackRecoil: 3
   _rangeAttackRecoil: 4
   _movementAnimatorName: isMoving
   _attackAnimatorName: Attack
@@ -315,7 +315,6 @@ MonoBehaviour:
   _navMeshAgent: {fileID: 2222625266149721536}
   _animator: {fileID: 2874873343531944221}
   _health: {fileID: 3253106864732200084}
-  _playerRef: {fileID: 0}
 --- !u!114 &3253106864732200084
 MonoBehaviour:
   m_ObjectHideFlags: 0
