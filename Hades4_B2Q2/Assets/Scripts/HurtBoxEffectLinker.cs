@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace MaquestiauxMark.Hades
 {
-    public class EffectLinker : MonoBehaviour
+    public class HurtBoxEffectLinker : MonoBehaviour
     {
         //[SerializeField] private CameraShake _cameraShake;
         [SerializeField] private HurtBox _hurtBox;
@@ -23,6 +23,14 @@ namespace MaquestiauxMark.Hades
         {
             HapticsController.s_hapticsInstance.HapticsPulse(_vibrationLowFrequency, _vibrationHighFrequency, _vibrationDuration);
             
+            if(_attackSoundSource)
+            {
+                _attackSoundSource.Play();
+            }
+            if (_attackVFX)
+            {
+                _attackVFX.Play();
+            }
             //_attackSoundSource.Play();
             //StartCoroutine(_cameraShake.ShakeCamera(0.1f, 0.1f));
             //_attackVFX.Play();

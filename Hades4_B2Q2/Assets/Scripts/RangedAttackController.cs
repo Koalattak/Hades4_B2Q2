@@ -22,7 +22,6 @@ namespace MaquestiauxMark.Hades
 
         public void Initialise(int attackDamage, string animatorParameterName)
         {
-            Debug.Log("Initialise");
             _attackDamage = attackDamage;
             _animatorParameterName = animatorParameterName;
 
@@ -36,8 +35,6 @@ namespace MaquestiauxMark.Hades
         private void OnAttackHit()
         {
             //Spawn Projectile
-            Debug.Log("Throw Projectile");
-
             ProjectileController spawnedProjectile = Instantiate(_projectile , _spawnTransform.position, Quaternion.identity);
             spawnedProjectile.Initialise(_attackDamage, transform.forward);
         }

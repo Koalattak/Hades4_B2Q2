@@ -74,7 +74,10 @@ namespace MaquestiauxMark.Hades
                 if (enemy != null && enemy.gameObject)
                 {
                     enemy.GetHealth().OnDeath -= RemoveEnemyFromList;
-                    enemy.EnemyDeath();
+                    if(enemy.GetHealth().GetHealthPercent() > 0 )
+                    {
+                        enemy.EnemyInstantDeath();
+                    }
                 }
             }
 

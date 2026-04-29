@@ -23,12 +23,13 @@ namespace MaquestiauxMark.Hades
 
         [SerializeField] private float _deathDelay;
 
+        private EEnemyState _currentState;
+        [SerializeField] private EEnemyState _initialState;
+
+        [Header("Attack Stats")]
         [SerializeField] private int _baseAttackDamage;
         [SerializeField] private int _rangeAttackDamage;
         [SerializeField] private float _rangeAttackCooldown;
-
-        private EEnemyState _currentState;
-        [SerializeField] private EEnemyState _initialState;
         [SerializeField] private float _baseAttackRecoil;
         [SerializeField] private float _rangeAttackRecoil;
 
@@ -63,6 +64,8 @@ namespace MaquestiauxMark.Hades
             ResetEnemy();
         }
 
+        #region Death and Damage
+
         private void ResetEnemy()
         {
             _health.OnDamaged -= EnemyDamage;
@@ -80,7 +83,7 @@ namespace MaquestiauxMark.Hades
 
         private void OnPlayerDeath()
         {
-            if(!gameObject) return;
+            if (!gameObject) return;
             _stopAllActions = true;
             OnStateExit();
             _animator.SetBool(_movementAnimatorName, false);
@@ -108,7 +111,7 @@ namespace MaquestiauxMark.Hades
             EnemyDeath();
         }
 
-        public void EnemyDeath()
+        private void EnemyDeath()
         {
             if (!gameObject) return;
             _health.OnDamaged -= EnemyDamage;
@@ -118,7 +121,7 @@ namespace MaquestiauxMark.Hades
             _stopAllActions = true;
             _hitBox.enabled = false;
             _animator.SetBool(_deathAnimatorName, true);
-            if(_instantDeath)
+            if (_instantDeath)
             {
                 Destroy(gameObject);
             }
@@ -134,6 +137,9 @@ namespace MaquestiauxMark.Hades
             Destroy(gameObject);
         }
 
+        #endregion
+        #region Finite State Machine
+
         private void Update()
         {
             if (!_stopAllActions)
@@ -142,9 +148,7 @@ namespace MaquestiauxMark.Hades
                 {
                     case EEnemyState.Idle:
                         if (IsPlayerCloserThan(_aggressiveDistance)) //Check Distance from Player, if the distance is lower than Threshold -> Change State
-                        {
                             OnStateChange(EEnemyState.Follow);
-                        }
                         break;
 
                     case EEnemyState.Follow:
@@ -152,16 +156,14 @@ namespace MaquestiauxMark.Hades
                         break;
                     case EEnemyState.RangedAttack:
                         if (!_isAttacking)
-                        {
                             OnStateChange(EEnemyState.Follow);
-                        }
                         break;
+
                     case EEnemyState.Attack:
                         if (!_isAttacking)
-                        {
                             OnStateChange(EEnemyState.Follow);
-                        }
                         break;
+
                     default: break;
                 }
             }
@@ -189,7 +191,7 @@ namespace MaquestiauxMark.Hades
             return Vector3.Distance(_playerRef.transform.position, transform.position) < range;
         }
 
-        void OnStateChange(EEnemyState newState)
+        private void OnStateChange(EEnemyState newState)
         {
             OnStateExit();
             _currentState = newState;
@@ -253,7 +255,8 @@ namespace MaquestiauxMark.Hades
                 default: break;
             }
         }
-
+        #endregion
+        #region Attack Delays 
         private IEnumerator BaseAttackRecoverDelay()
         {
             yield return new WaitForSeconds(_baseAttackRecoil);
@@ -282,5 +285,6 @@ namespace MaquestiauxMark.Hades
                 _canRangeAttack = true;
             }
         }
+        #endregion
     }
 }

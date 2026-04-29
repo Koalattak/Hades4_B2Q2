@@ -18,28 +18,31 @@ namespace MaquestiauxMark.Hades
         private bool _isPaused = true;
 
         public event Action OnReset;
-
-        [SerializeField] LayerMask _evadeLayerMask;
+        public event Action<float> OnEvadeChange;
+        [Header("Evade")]
         [SerializeField] private float _maxWallDistance;
-
-        [SerializeField] private float _deadZone;
-        [SerializeField] private float _normalMoveSpeed;
         [SerializeField] private float _evadeSpeed;
         [SerializeField] private float _evadeTime;
         [SerializeField] private float _evadeReloadTime;
+        private float _evadeCooldown;
+        [SerializeField] LayerMask _evadeLayerMask;
+
+        [Header("Movement")]
+        [SerializeField] private float _deadZone;
+        [SerializeField] private float _normalMoveSpeed;
         [SerializeField] private float _deathReloadTime;
         private float _moveSpeed;
 
+        [Header("Attacks")]
         [SerializeField] private int _baseAttackDamage;
         [SerializeField] private int _rangedAttackDamage;
 
-
+        [Header("References")]
         [SerializeField] private HurtBox _attackHurtBox;
         [SerializeField] private HealthComponent _health;
         [SerializeField] private BaseAttackController _baseAttackController;
         [SerializeField] private RangedAttackController _rangedAttackController;
         [SerializeField] private UIManager _interfaceManager;
-
 
         [Header("Animator")]
         [SerializeField] private Animator _animator;
@@ -50,6 +53,7 @@ namespace MaquestiauxMark.Hades
         [SerializeField] private string _rangedAttackAnimatorName;
         [SerializeField] private string _deathAnimatorName;
 
+        private float _dashReloadPercent => (_evadeTime - _evadeCooldown) / _evadeTime;
         public HealthComponent GetHealth() { return _health; }
 
         private void Start()
@@ -102,26 +106,23 @@ namespace MaquestiauxMark.Hades
             }
         }
 
-        void OnAttack() // Mix Functions ???
+        void OnAttack() { Attack(false); }
+        void OnRangedAttack() { Attack(true); }
+
+        void Attack(bool isRangedAttack)
         {
-            if (_isDead) return;
-            if (_canAttack)
+            if (_isDead || !_canAttack) return;
+            _canMove = false;
+            _canAttack = false;
+            if (isRangedAttack)
             {
-                _canMove = false;
-                _canAttack = false;
-                _baseAttackController.Initialise(_baseAttackDamage, _baseAttackAnimatorName);
-                _attackHurtBox.OnAttackEnd += EndAttack;
-            }
-        }
-        void OnRangedAttack()
-        {
-            if (_isDead) return;
-            if (_canAttack)
-            {
-                _canAttack = false;
-                _canMove = false;
                 _rangedAttackController.Initialise(_rangedAttackDamage, _rangedAttackAnimatorName);
                 _rangedAttackController.OnAttackEnd += EndAttack;
+            }
+            else
+            {
+                _baseAttackController.Initialise(_baseAttackDamage, _baseAttackAnimatorName);
+                _attackHurtBox.OnAttackEnd += EndAttack;
             }
         }
 
@@ -150,6 +151,7 @@ namespace MaquestiauxMark.Hades
                 _canEvade = false;
                 _health.ToggleInvincibility();
                 //Timer
+                _evadeCooldown = _evadeTime;
                 StartCoroutine(EvadeDelay());
             }
         }
@@ -175,12 +177,17 @@ namespace MaquestiauxMark.Hades
             _moveDirection = _tempMoveDirection;
             _canMovementChange = true;
             _health.ToggleInvincibility();
-            StartCoroutine(EvadeReload());
         }
-        IEnumerator EvadeReload()
+        private void EvadeReload()
         {
-            yield return new WaitForSeconds(_evadeReloadTime);
-            _canEvade = true;
+            if (_canEvade) return;
+
+            if (_evadeCooldown > 0)
+                _evadeCooldown -= Time.deltaTime;
+            else
+                _canEvade = true;
+
+            OnEvadeChange?.Invoke(_dashReloadPercent);
         }
         #endregion
 
@@ -189,6 +196,7 @@ namespace MaquestiauxMark.Hades
         {
             if (_isDead) return;
             BasicMovement();
+            EvadeReload();
         }
 
         void BasicMovement()

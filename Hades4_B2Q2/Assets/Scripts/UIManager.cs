@@ -7,26 +7,38 @@ namespace MaquestiauxMark.Hades
         [SerializeField] private GameObject _pauseCanvasRef;
         [SerializeField] private GameObject _canvasUIRef;
         [SerializeField] private GameObject _deathCanvasRef;
+        [SerializeField] private GameObject _winCanvasRef;
 
         public void ActivatePauseCanvas()
         {
-            Time.timeScale = 0;
+            DeactivateAllCanvas();
             _pauseCanvasRef.SetActive(true);
-            _canvasUIRef.SetActive(false);
-            _deathCanvasRef.SetActive(false);
         }
         public void ActivateDeathCanvas()
         {
-            Time.timeScale = 0;
-            _pauseCanvasRef.SetActive(false);
-            _canvasUIRef.SetActive(false);
+            DeactivateAllCanvas();
             _deathCanvasRef.SetActive(true);
+        }
+        public void ActivateWinCanvas()
+        {
+            DeactivateAllCanvas();
+            _winCanvasRef.SetActive(true);
         }
         public void ActivateUICanvas()
         {
+            DeactivateAllCanvas();
             Time.timeScale = 1f;
-            _pauseCanvasRef.SetActive(false);
             _canvasUIRef.SetActive(true);
+        }
+
+
+
+        private void DeactivateAllCanvas()
+        {
+            Time.timeScale = 0;
+            _winCanvasRef.SetActive(false);
+            _pauseCanvasRef.SetActive(false);
+            _canvasUIRef.SetActive(false);
             _deathCanvasRef.SetActive(false);
         }
     }
