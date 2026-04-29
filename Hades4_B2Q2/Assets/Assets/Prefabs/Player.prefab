@@ -293,21 +293,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee6ea22dacf67346827c96362ccc7d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Hades::MaquestiauxMark.Hades.PlayerController
-  _evadeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
   _maxWallDistance: 1
-  _deadZone: 0.3
-  _normalMoveSpeed: 5
   _evadeSpeed: 20
   _evadeTime: 0.3
   _evadeReloadTime: 1
+  _evadeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  _deadZone: 0.3
+  _normalMoveSpeed: 5
+  _deathReloadTime: 3
   _baseAttackDamage: 2
   _rangedAttackDamage: 3
   _attackHurtBox: {fileID: 1202487333865801835}
   _health: {fileID: 2990910402611814973}
   _baseAttackController: {fileID: 6108943410903097413}
   _rangedAttackController: {fileID: 7461033541602033944}
+  _interfaceManager: {fileID: 0}
   _animator: {fileID: 6099069512126843621}
   _animatorSpeedNormal: 1
   _animatorSpeedEvade: 20
@@ -340,12 +342,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e78692ae63c98a489807a4533a41570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Hades::MaquestiauxMark.Hades.BaseAttackEffectLinker
+  _cameraShake: {fileID: 0}
   _hurtBox: {fileID: 1202487333865801835}
   _attackSoundSource: {fileID: 0}
   _attackVFX: {fileID: 0}
   _vibrationLowFrequency: 0.2
   _vibrationHighFrequency: 1
   _vibrationDuration: 0.15
+  _cameraShakeDuration: 1
+  _cameraShakeIntensity: 100
 --- !u!114 &6108943410903097413
 MonoBehaviour:
   m_ObjectHideFlags: 0

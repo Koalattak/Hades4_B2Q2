@@ -2,10 +2,9 @@ using UnityEngine;
 
 namespace MaquestiauxMark.Hades
 {
-    public class HurtBoxEffectLinker : MonoBehaviour
+    public class EffectLinker : MonoBehaviour
     {
         [SerializeField] private CameraShake _cameraShake;
-        [SerializeField] private HurtBox _hurtBox;
         [SerializeField] private AudioSource _attackSoundSource;
         [SerializeField] private ParticleSystem _attackVFX;
 
@@ -16,24 +15,20 @@ namespace MaquestiauxMark.Hades
         [SerializeField] private float _cameraShakeDuration;
         [SerializeField] private float _cameraShakeIntensity;
 
-
         void Start()
         {
-            _hurtBox.OnSuccessfulHit += ApplyEffects; //When HurtBox Touches a Valid Hitbox
+            //_hurtBox.OnSuccessfulHit += ApplyEffects; //When HurtBox Touched a Valid Hitbox
         }
 
         private void ApplyEffects()
         {
-            if(_cameraShake)
-            {
-                StartCoroutine(_cameraShake.ShakeCamera(_cameraShakeDuration, _cameraShakeIntensity));
-            }
-            if(_vibrationDuration > 0)
+            StartCoroutine(_cameraShake.ShakeCamera(_cameraShakeDuration, _cameraShakeIntensity));
+            if (_vibrationDuration > 0)
             {
                 HapticsController.s_hapticsInstance.HapticsPulse(_vibrationLowFrequency, _vibrationHighFrequency, _vibrationDuration);
             }
-            
-            if(_attackSoundSource)
+
+            if (_attackSoundSource)
             {
                 _attackSoundSource.Play();
             }

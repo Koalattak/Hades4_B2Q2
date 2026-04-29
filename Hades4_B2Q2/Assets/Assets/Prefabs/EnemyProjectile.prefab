@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4634334290138811051}
   - component: {fileID: 7867658347690276169}
   - component: {fileID: 7428542563089941953}
+  - component: {fileID: 4085055870987201466}
   m_Layer: 9
   m_Name: EnemyProjectile
   m_TagString: Untagged
@@ -142,3 +143,24 @@ MonoBehaviour:
   _moveSpeed: 6
   _hurtBox: {fileID: 7867658347690276169}
   _lifeTimeMax: 10
+--- !u!114 &4085055870987201466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8091245622857194024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e78692ae63c98a489807a4533a41570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Hades::MaquestiauxMark.Hades.HurtBoxEffectLinker
+  _cameraShake: {fileID: -4059405209740823846, guid: 0cf21e17d7a3a8b4fa2f585c46dc6152, type: 3}
+  _hurtBox: {fileID: 7867658347690276169}
+  _attackSoundSource: {fileID: 0}
+  _attackVFX: {fileID: 0}
+  _vibrationLowFrequency: 0.1
+  _vibrationHighFrequency: 0.8
+  _vibrationDuration: 0.4
+  _cameraShakeDuration: 0.4
+  _cameraShakeIntensity: 0.5
