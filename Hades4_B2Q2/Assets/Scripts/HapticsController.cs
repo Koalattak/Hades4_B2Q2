@@ -6,6 +6,7 @@ namespace MaquestiauxMark.Hades
 {
     public class HapticsController : MonoBehaviour
     {
+        //Tutorial Followed : https://www.youtube.com/watch?v=SmmBC-yCJ28
         public static HapticsController s_hapticsInstance;
 
         private Gamepad _controller;

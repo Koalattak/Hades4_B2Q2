@@ -35,7 +35,7 @@ namespace MaquestiauxMark.Hades
                 GameObject spawnedWall = Instantiate(_wallToSpawn, wallTransform.position, Quaternion.identity);
                 _spawnedWalls.Add(spawnedWall);
             }
-            _camera.MakeCameraStatic(_cameraTransform);
+            _camera.MakeCameraStatic(_cameraTransform); //Lock Camera to a Position
             SpawnEnemies();
         }
 
@@ -69,7 +69,7 @@ namespace MaquestiauxMark.Hades
             {
                 Destroy(wall);
             }
-            foreach (EnemyController enemy in _enemiesToKill)
+            foreach (EnemyController enemy in _enemiesToKill) //Destroy Any Remaining Enemy
             {
                 if (enemy != null && enemy.gameObject)
                 {
@@ -80,20 +80,10 @@ namespace MaquestiauxMark.Hades
                     }
                 }
             }
-
-
             _isBlocking = false;
             _camera.FollowPlayer();
             _playerRef.OnReset -= DestroyWalls;
 
         }
-
-        //private void Update()
-        //{
-        //    if (_isBlocking)
-        //    {
-        //        _camera.MakeCameraStatic(_cameraTransform);
-        //    }
-        //}
     }
 }

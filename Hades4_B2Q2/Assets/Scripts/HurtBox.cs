@@ -6,7 +6,7 @@ namespace MaquestiauxMark.Hades
 {
     public class HurtBox : MonoBehaviour
     {
-        public event Action OnSuccessfulHit;
+        public event Action<Vector3, Quaternion> OnSuccessfulHit;
         public event Action OnAttackEnd;
         [SerializeField] private Collider _hurtBox;
         private int _damageToDeal;
@@ -24,7 +24,9 @@ namespace MaquestiauxMark.Hades
             if(health.IsInvincible || health.GodMode || _enemiesHit.Contains(health)) return;
             _enemiesHit.Add(health);
             health.TakeDamage(_damageToDeal);
-            OnSuccessfulHit?.Invoke();
+            Transform temp = transform;
+            temp.rotation = Quaternion.LookRotation(other.transform.position - temp.position);
+            OnSuccessfulHit?.Invoke(other.transform.position, temp.rotation);
         }
 
         public void ActivateHurtBox(int damageToDeal)

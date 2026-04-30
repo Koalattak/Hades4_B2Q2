@@ -53,7 +53,6 @@ namespace MaquestiauxMark.Hades
             return (float)_healthCurrent / (float)_healthMax;
         }
 
-        //Invincibility Toggle
         public void ToggleInvincibility()
         {
             IsInvincible = !IsInvincible;

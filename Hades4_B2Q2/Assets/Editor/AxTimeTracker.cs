@@ -1,5 +1,6 @@
 //Written by Aexadev on 16/08/2024
 //ver 2.5
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 using System;
@@ -312,6 +313,4 @@ public class TimeTrackerOptionsWindow : EditorWindow
         GUILayout.Label("© 2024 Aexadev ver 2.5", EditorStyles.centeredGreyMiniLabel);
     }
 }
-
-
-
+#endif

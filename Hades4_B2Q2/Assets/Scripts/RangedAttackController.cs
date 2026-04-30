@@ -12,6 +12,7 @@ namespace MaquestiauxMark.Hades
         private int _attackDamage;
         private string _animatorParameterName;
         public event Action OnAttackEnd;
+        public event Action OnRangedAttackStart;
 
         private void Start()
         {
@@ -26,6 +27,7 @@ namespace MaquestiauxMark.Hades
             _animatorParameterName = animatorParameterName;
 
             _animator.SetTrigger(_animatorParameterName);
+            OnRangedAttackStart?.Invoke();
         }
         private void OnStopAttack()
         {

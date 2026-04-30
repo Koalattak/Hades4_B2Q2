@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static Codice.Client.Common.EventTracking.TrackFeatureUseEvent.Features.DesktopGUI.Filters;
 
 namespace MaquestiauxMark.Hades
 {
@@ -15,10 +14,12 @@ namespace MaquestiauxMark.Hades
         private bool _canMove = true;
         private bool _canAttack = true;
         private bool _canEvade = true;
-        private bool _isPaused = true;
+        private bool _isPaused = false;
 
         public event Action OnReset;
+        public event Action OnEvadeStart;
         public event Action<float> OnEvadeChange;
+
         [Header("Evade")]
         [SerializeField] private float _maxWallDistance;
         [SerializeField] private float _evadeSpeed;
@@ -65,7 +66,6 @@ namespace MaquestiauxMark.Hades
 
         public void ResetPlayer()
         {
-            _health.OnDamaged += Damaged;
             _health.OnDeath += Death;
             _interfaceManager.ActivateUICanvas();
 
@@ -80,9 +80,11 @@ namespace MaquestiauxMark.Hades
         #region Inputs
         void OnMove(InputValue inputValue)
         {
-            if (_isDead) return;
+            if (_isDead || _isPaused) return;
             if (_canMovementChange)
             {
+                //Logic followed from this video : https://www.youtube.com/watch?v=reWtxGTyN78
+                //Movement facing the camera 
                 _moveDirection = inputValue.Get<Vector2>();
                 Vector3 cameraForwardVector = Camera.main.transform.forward;
                 Vector3 cameraRightVector = Camera.main.transform.right;
@@ -109,9 +111,9 @@ namespace MaquestiauxMark.Hades
         void OnAttack() { Attack(false); }
         void OnRangedAttack() { Attack(true); }
 
-        void Attack(bool isRangedAttack)
+        void Attack(bool isRangedAttack) //Generalised Method for Both Attacks
         {
-            if (_isDead || !_canAttack) return;
+            if (_isDead || !_canAttack || _isPaused) return;
             _canMove = false;
             _canAttack = false;
             if (isRangedAttack)
@@ -136,10 +138,10 @@ namespace MaquestiauxMark.Hades
 
         void OnEvade()
         {
-            if (_isDead) return;
+            if (_isDead || _isPaused) return;
             if (_canEvade)
             {
-                if (_moveDirection == Vector2.zero)
+                if (_moveDirection == Vector2.zero) //Allows Dash when Immobile
                 {
                     _moveDirection = new(transform.forward.x, transform.forward.z);
                 }
@@ -150,6 +152,7 @@ namespace MaquestiauxMark.Hades
                 _canMovementChange = false;
                 _canEvade = false;
                 _health.ToggleInvincibility();
+                OnEvadeStart?.Invoke();
                 //Timer
                 _evadeCooldown = _evadeTime;
                 StartCoroutine(EvadeDelay());
@@ -187,7 +190,7 @@ namespace MaquestiauxMark.Hades
             else
                 _canEvade = true;
 
-            OnEvadeChange?.Invoke(_dashReloadPercent);
+            OnEvadeChange?.Invoke(_dashReloadPercent); //For UI
         }
         #endregion
 
@@ -206,7 +209,8 @@ namespace MaquestiauxMark.Hades
                 _animator.SetFloat(_speedAnimatorName, 0);
                 return;
             }
-            if (!_canMovementChange && Physics.Raycast(transform.position, transform.forward, out _, _maxWallDistance, _evadeLayerMask)) return;
+            //Checks for Wall Collisions (Due to not using Rigidbody Movements)
+            if (!_canMovementChange && Physics.Raycast(transform.position, transform.forward, out _, _maxWallDistance, _evadeLayerMask)) return; 
             transform.Translate(_moveSpeed * Time.deltaTime * new Vector3(_moveDirection.x, 0, _moveDirection.y), Space.World);
             _animator.SetFloat(_speedAnimatorName, _moveDirection.magnitude);
             if (_moveDirection.magnitude > 0)
@@ -221,19 +225,10 @@ namespace MaquestiauxMark.Hades
 
             _animator.SetBool(_deathAnimatorName, _isDead); //Play Animation
 
-            _health.OnDamaged -= Damaged;
             _health.OnDeath -= Death;
 
             //Stop Enemy Attacks -> In Enemy Script
             StartCoroutine(DeathDelay());
-        }
-
-        private void Damaged()
-        {
-            //Play Animation
-            //Invincibility Frames
-            //Play Sound
-            //Play Haptics
         }
 
         private IEnumerator DeathDelay()

@@ -11,8 +11,6 @@ namespace MaquestiauxMark.Hades
         private Color _initialColor;
         [SerializeField] private Color _endColor = new(0f, 0f, 0f, 0f);
 
-
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             _initialColor = _backgroundImage.color;

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3637206387615094317}
   - component: {fileID: 1202487333865801835}
   - component: {fileID: 1180436058965461320}
+  - component: {fileID: 7164097316234011070}
   m_Layer: 7
   m_Name: EpicSword
   m_TagString: Untagged
@@ -29,13 +30,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556292082263023319}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.47795013, y: 0.5213631, z: -0.53280544, w: -0.46461025}
-  m_LocalPosition: {x: -0.604, y: 0.07, z: 0.064}
+  m_LocalRotation: {x: -0.47130966, y: -0.52713114, z: 0.52713114, w: 0.47130966}
+  m_LocalPosition: {x: -0.6, y: 0.07, z: 0.064}
   m_LocalScale: {x: 0.14, y: 0.12551723, z: 1.39}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1838733473287979224}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 6.4, y: -90, z: 90}
 --- !u!33 &1277434791335749674
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -154,6 +155,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &7164097316234011070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556292082263023319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d2d8e3faefb16740a5a05316c11acdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Hades::MaquestiauxMark.Hades.SwordHolder
 --- !u!1 &1747926034076099165
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,12 +234,28 @@ GameObject:
   - component: {fileID: 3577384380159195893}
   - component: {fileID: 1891763679773290246}
   - component: {fileID: 2990910402611814973}
-  - component: {fileID: 4271509616785398892}
   - component: {fileID: 6108943410903097413}
   - component: {fileID: 7461033541602033944}
   - component: {fileID: 4522320736522459306}
   - component: {fileID: 6099069512126843621}
   - component: {fileID: 7020370130631758146}
+  - component: {fileID: 7584334524822285136}
+  - component: {fileID: 1610324678910075192}
+  - component: {fileID: 1690361679867352855}
+  - component: {fileID: 3051291430073991442}
+  - component: {fileID: 4390656591844331891}
+  - component: {fileID: 5440668444708611588}
+  - component: {fileID: 2420760979452604415}
+  - component: {fileID: 7173699305235329105}
+  - component: {fileID: 7108734232737825576}
+  - component: {fileID: 3617840169620160445}
+  - component: {fileID: 2033413535469629639}
+  - component: {fileID: 6683026056351811639}
+  - component: {fileID: 2086358786914505298}
+  - component: {fileID: 7754866682285599069}
+  - component: {fileID: 841649831227931763}
+  - component: {fileID: 2621826145667178653}
+  - component: {fileID: 8153260958147178967}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -330,27 +359,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Hades::MaquestiauxMark.Hades.HealthComponent
   _healthMax: 10
---- !u!114 &4271509616785398892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2566652273680835401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e78692ae63c98a489807a4533a41570, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Hades::MaquestiauxMark.Hades.BaseAttackEffectLinker
-  _cameraShake: {fileID: 0}
-  _hurtBox: {fileID: 1202487333865801835}
-  _attackSoundSource: {fileID: 0}
-  _attackVFX: {fileID: 0}
-  _vibrationLowFrequency: 0.2
-  _vibrationHighFrequency: 1
-  _vibrationDuration: 0.15
-  _cameraShakeDuration: 1
-  _cameraShakeIntensity: 100
 --- !u!114 &6108943410903097413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,6 +460,780 @@ CapsuleCollider:
   m_Height: 1.75
   m_Direction: 1
   m_Center: {x: 0, y: 0.875, z: 0}
+--- !u!82 &7584334524822285136
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566652273680835401}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 7f29fbac13a180647bb3f6563374583f, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1610324678910075192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566652273680835401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ceb4071cb0c66b4c946e3d4161a69af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Hades::MaquestiauxMark.Hades.EffectLinker
+  _cameraShake: {fileID: -4059405209740823846, guid: 0cf21e17d7a3a8b4fa2f585c46dc6152, type: 3}
+  _attackSoundSource: {fileID: 7584334524822285136}
+  _attackVFX: {fileID: 5008724541339223867, guid: df5779533f5e78b4889e237af04698ba, type: 3}
+  _vibrationLowFrequency: 0.2
+  _vibrationHighFrequency: 1
+  _vibrationDuration: 0.15
+  _cameraShakeDuration: 0.1
+  _cameraShakeIntensity: 0.1
+--- !u!114 &1690361679867352855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566652273680835401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc00c1b6e6f42b4b87a2dbf433de24d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Hades::MaquestiauxMark.Hades.HurtBoxToEffects
+  _hurtBox: {fileID: 1202487333865801835}
+  _effectLinker: {fileID: 1610324678910075192}
+--- !u!82 &3051291430073991442
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566652273680835401}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 224333dfc317e3d49997727b61153a47, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.7
+  m_Pitch: 0.95
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &4390656591844331891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566652273680835401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ceb4071cb0c66b4c946e3d4161a69af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Hades::MaquestiauxMark.Hades.EffectLinker
+  _cameraShake: {fileID: -4059405209740823846, guid: 0cf21e17d7a3a8b4fa2f585c46dc6152, type: 3}
+  _attackSoundSource: {fileID: 3051291430073991442}
+  _attackVFX: {fileID: 0}
+  _vibrationLowFrequency: 0.1
+  _vibrationHighFrequency: 1
+  _vibrationDuration: 0.2
+  _cameraShakeDuration: 0.3
+  _cameraShakeIntensity: 0.3
+--- !u!114 &5440668444708611588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566652273680835401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47cf2fd043c15c4479052a69a1fc24c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Hades::MaquestiauxMark.Hades.HealthToEffects
+  _health: {fileID: 2990910402611814973}
+  _effectLinker: {fileID: 4390656591844331891}
+--- !u!82 &2420760979452604415
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566652273680835401}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 960c4756de85e724d998f9cfb36577ef, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &7173699305235329105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566652273680835401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5f9073ee986984bbc328756b357485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Hades::MaquestiauxMark.Hades.DeathToEffects
+  _health: {fileID: 2990910402611814973}
+  _effectLinker: {fileID: 7108734232737825576}
+--- !u!114 &7108734232737825576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566652273680835401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ceb4071cb0c66b4c946e3d4161a69af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Hades::MaquestiauxMark.Hades.EffectLinker
+  _cameraShake: {fileID: -4059405209740823846, guid: 0cf21e17d7a3a8b4fa2f585c46dc6152, type: 3}
+  _attackSoundSource: {fileID: 2420760979452604415}
+  _attackVFX: {fileID: 0}
+  _vibrationLowFrequency: 0.1
+  _vibrationHighFrequency: 0.75
+  _vibrationDuration: 2.5
+  _cameraShakeDuration: 2.5
+  _cameraShakeIntensity: 0.2
+--- !u!82 &3617840169620160445
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566652273680835401}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: c31037d15190c1c4692bc4b55a1e91b7, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.75
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &2033413535469629639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566652273680835401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ceb4071cb0c66b4c946e3d4161a69af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Hades::MaquestiauxMark.Hades.EffectLinker
+  _cameraShake: {fileID: 0}
+  _attackSoundSource: {fileID: 3617840169620160445}
+  _attackVFX: {fileID: 0}
+  _vibrationLowFrequency: 0
+  _vibrationHighFrequency: 0
+  _vibrationDuration: 0
+  _cameraShakeDuration: 0
+  _cameraShakeIntensity: 0
+--- !u!114 &6683026056351811639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566652273680835401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c294f16d71ff00544beb5f03e52de416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Hades::MaquestiauxMark.Hades.AttacksToEffects
+  _baseAttackController: {fileID: 6108943410903097413}
+  _rangedAttackController: {fileID: 7461033541602033944}
+  _baseEffectLinker: {fileID: 2033413535469629639}
+  _rangedEffectLinker: {fileID: 2086358786914505298}
+--- !u!114 &2086358786914505298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566652273680835401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ceb4071cb0c66b4c946e3d4161a69af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Hades::MaquestiauxMark.Hades.EffectLinker
+  _cameraShake: {fileID: 0}
+  _attackSoundSource: {fileID: 7754866682285599069}
+  _attackVFX: {fileID: 0}
+  _vibrationLowFrequency: 0
+  _vibrationHighFrequency: 0
+  _vibrationDuration: 0
+  _cameraShakeDuration: 0
+  _cameraShakeIntensity: 0
+--- !u!82 &7754866682285599069
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566652273680835401}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 1219f9ac6c6a2214ba12a3731e8ab3c2, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.75
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &841649831227931763
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566652273680835401}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: cc89fc58a681c16489872371a5c5d3f4, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.4
+  m_Pitch: 2.5
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &2621826145667178653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566652273680835401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8250ce767ecf74248ae9ec811b4ca18f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Hades::MaquestiauxMark.Hades.EvadeToEffects
+  _player: {fileID: 1891763679773290246}
+  _effectLinker: {fileID: 8153260958147178967}
+--- !u!114 &8153260958147178967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566652273680835401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ceb4071cb0c66b4c946e3d4161a69af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Hades::MaquestiauxMark.Hades.EffectLinker
+  _cameraShake: {fileID: -4059405209740823846, guid: 0cf21e17d7a3a8b4fa2f585c46dc6152, type: 3}
+  _attackSoundSource: {fileID: 841649831227931763}
+  _attackVFX: {fileID: 0}
+  _vibrationLowFrequency: 0
+  _vibrationHighFrequency: 0.5
+  _vibrationDuration: 0.3
+  _cameraShakeDuration: 0
+  _cameraShakeIntensity: 0
 --- !u!1 &6748331392802670851
 GameObject:
   m_ObjectHideFlags: 0

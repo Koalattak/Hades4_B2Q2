@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 namespace MaquestiauxMark.Hades
 {
@@ -9,6 +10,7 @@ namespace MaquestiauxMark.Hades
         private AttackHit _attackHit;
         private int _attackDamage;
         private string _animatorParameterName;
+        public event Action OnAttackStart;
 
         public void Initialise(int attackDamage, string animatorParameterName)
         {
@@ -20,6 +22,7 @@ namespace MaquestiauxMark.Hades
             _attackHit.StopAttack += OnAttackStop;
 
             _animator.SetTrigger(_animatorParameterName);
+            OnAttackStart?.Invoke();
         }
 
         private void OnAttackHit()

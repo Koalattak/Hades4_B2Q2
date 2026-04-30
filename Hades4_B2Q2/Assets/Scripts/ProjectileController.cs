@@ -24,7 +24,7 @@ namespace MaquestiauxMark.Hades
         {
             if(_lifeTimeCurrent > _lifeTimeMax)
             {
-                ProjectileDestroy();
+                ProjectileDestroy(Vector3.zero, Quaternion.identity);
             }
             else
             {
@@ -33,7 +33,7 @@ namespace MaquestiauxMark.Hades
             }
         }
 
-        private void ProjectileDestroy()
+        private void ProjectileDestroy(Vector3 h, Quaternion q)
         {
             _hurtBox.OnSuccessfulHit -= ProjectileDestroy;
             Destroy(gameObject);

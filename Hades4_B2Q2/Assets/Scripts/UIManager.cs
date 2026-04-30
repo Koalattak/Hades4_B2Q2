@@ -31,8 +31,6 @@ namespace MaquestiauxMark.Hades
             _canvasUIRef.SetActive(true);
         }
 
-
-
         private void DeactivateAllCanvas()
         {
             Time.timeScale = 0;

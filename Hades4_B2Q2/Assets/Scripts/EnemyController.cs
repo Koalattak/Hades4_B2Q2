@@ -96,10 +96,6 @@ namespace MaquestiauxMark.Hades
 
         private void EnemyDamage()
         {
-            //Play Hit Visuals
-            //Play Hurt Sound
-            Debug.Log("ouch");
-
             if (_currentState == _initialState)
             {
                 OnStateChange(EEnemyState.Follow);
@@ -228,7 +224,7 @@ namespace MaquestiauxMark.Hades
             {
                 _isAttacking = true;
                 _canRangeAttack = false;
-                transform.LookAt(_playerRef.transform.position);
+                transform.LookAt(_playerRef.transform.position);//Face Player
                 _rangedAttackController.Initialise(_rangeAttackDamage, _rangeAttackAnimatorName);
                 StartCoroutine(RangedAttackRecoverDelay());
             }
@@ -238,7 +234,7 @@ namespace MaquestiauxMark.Hades
             if (!_isAttacking)
             {
                 _isAttacking = true;
-                transform.LookAt(_playerRef.transform.position);
+                transform.LookAt(_playerRef.transform.position); //Face Player
                 _baseAttackController.Initialise(_baseAttackDamage, _attackAnimatorName);
                 StartCoroutine(BaseAttackRecoverDelay());
             }
