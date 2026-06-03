@@ -98,7 +98,7 @@ namespace MaquestiauxMark.Hades
         {
             if (_currentState == _initialState)
             {
-                OnStateChange(EEnemyState.Follow);
+                OnStateChange(EEnemyState.Follow);//Becomes Aggressive on initial Damage
             }
         }
         public void EnemyInstantDeath()

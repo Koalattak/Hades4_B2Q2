@@ -21,6 +21,7 @@ namespace MaquestiauxMark.Hades
             _rangedAttackHit.StopAttack += OnStopAttack;
         }
 
+        //Function to know the amount of damage to heal
         public void Initialise(int attackDamage, string animatorParameterName)
         {
             _attackDamage = attackDamage;

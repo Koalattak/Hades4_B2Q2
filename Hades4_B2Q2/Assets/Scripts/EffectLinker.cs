@@ -4,6 +4,8 @@ namespace MaquestiauxMark.Hades
 {
     public class EffectLinker : MonoBehaviour
     {
+        //Contains all of the types of feedback apart from the animations
+        
         [SerializeField] private CameraShake _cameraShake;
 
         [SerializeField] private AudioSource _attackSoundSource;

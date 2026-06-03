@@ -39,7 +39,7 @@ namespace MaquestiauxMark.Hades
                 _targetPosition = _player.transform.position + _positionOffset;
                 transform.rotation = Quaternion.Lerp(transform.rotation, _rotationOffset, Mathf.Lerp(0, 1, _rotationSpeed * Time.deltaTime));
             }
-            else
+            else //In a Fixed Camera Zone
             {
                 transform.rotation = Quaternion.Lerp(transform.rotation, _targetRotation, Mathf.Lerp(0, 1, _rotationSpeed * Time.deltaTime));
             }

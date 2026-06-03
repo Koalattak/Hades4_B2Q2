@@ -108,24 +108,23 @@ namespace MaquestiauxMark.Hades
             }
         }
 
-        void OnAttack() { Attack(false); }
-        void OnRangedAttack() { Attack(true); }
-
-        void Attack(bool isRangedAttack) //Generalised Method for Both Attacks
+        void OnAttack() 
         {
             if (_isDead || !_canAttack || _isPaused) return;
             _canMove = false;
             _canAttack = false;
-            if (isRangedAttack)
-            {
-                _rangedAttackController.Initialise(_rangedAttackDamage, _rangedAttackAnimatorName);
-                _rangedAttackController.OnAttackEnd += EndAttack;
-            }
-            else
-            {
-                _baseAttackController.Initialise(_baseAttackDamage, _baseAttackAnimatorName);
-                _attackHurtBox.OnAttackEnd += EndAttack;
-            }
+
+            _baseAttackController.Initialise(_baseAttackDamage, _baseAttackAnimatorName);
+            _attackHurtBox.OnAttackEnd += EndAttack;
+        }
+        void OnRangedAttack() 
+        {
+            if (_isDead || !_canAttack || _isPaused) return;
+            _canMove = false;
+            _canAttack = false;
+
+            _rangedAttackController.Initialise(_rangedAttackDamage, _rangedAttackAnimatorName);
+            _rangedAttackController.OnAttackEnd += EndAttack;
         }
 
         void EndAttack()
